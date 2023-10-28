@@ -64,25 +64,25 @@ function Calculator() {
 
 
   return (
-    <div className="flex md:flex-1 flex-col gap-5 items-start justify-start w-auto md:w-full">
-    <div className="flex flex-col h-[879px] md:h-auto items-start justify-start w-auto md:w-full">
+    <div className="flex md:flex-1 flex-col gap-5 items-start justify-start w-auto md:w-full overflow-hidden">
+    <div className="flex flex-col md:h-[879px] md:h-auto items-start justify-start w-auto md:w-full">
       <div className="bg-white flex flex-col items-center justify-start p-[35px] sm:px-5 rounded-[16px] w-full">
         <div className="flex flex-col items-start justify-start mb-[23px] p-2 w-auto md:w-full">
-          <div className="flex flex-col gap-10 items-center justify-start max-w-[713px] w-full">
+          <div className="flex flex-col gap-10 items-center justify-start md:max-w-[713px] w-full">
             <span
-              className="text-4xl text-center text-gray-900 w-auto font-bold font-inter"
+              className="text-2xl md:text-4xl text-center text-gray-900 w-auto font-bold font-inter"
             >
               Free Crypto Tax Calculator Australia
             </span>
             <div className="flex flex-col gap-7 items-start justify-start w-auto md:w-full">
               <div className="flex flex-row gap-10 items-start justify-start w-auto md:w-full">
-                <div className="flex flex-row items-center justify-center w-auto">
+                <div className="flex flex-col md:flex-row items-center justify-center w-auto">
                   <span
                     className="text-[15px] text-gray-900 w-content font-inter font-normal m-2"
                   >
                     Financial Year
                   </span>
-                  <div className="flex flex-col h-12 md:h-auto items-start justify-start w-[228px]">
+                  <div className="flex flex-col h-12 md:h-auto items-start justify-start md:w-[228px]">
                 <Select
                 sx={{ boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 }, borderRadius: '10px' }}
                 value={["Fy 2023-24"]}
@@ -100,13 +100,13 @@ function Calculator() {
                   </div>
                 </div>
                 
-                <div className="flex flex-row items-center justify-center w-auto">
+                <div className="flex flex-col md:flex-row items-center justify-center w-auto">
                   <span
                     className="text-[15px] text-gray-900 w-content font-inter font-normal m-2"
                   >
                     Country
                   </span>
-                  <div className="flex flex-col h-12 md:h-auto items-start justify-start w-[228px]">
+                  <div className="flex flex-col h-12 md:h-auto items-start justify-start md:w-[228px]">
                 <Select
                 sx={{ boxShadow: 'none', '.MuiOutlinedInput-notchedOutline': { border: 0 }, borderRadius: '10px' }}
                 onChange={""}
@@ -129,7 +129,7 @@ function Calculator() {
 
               <div className="bg-[#c9cfdd99] h-px w-full" />
 
-              <div className="flex flex-row gap-10 items-start justify-start max-w-[711px] w-full">
+              <div className="flex flex-col md:flex-row gap-10 items-start justify-start md:max-w-[711px] w-full">
                 <div className="flex flex-1 flex-col gap-1.5 items-start justify-start w-full">
                   <span className="text-[15px] text-gray-900 w-auto font-inter font-normal">
                     Enter purchase price of Crypto
@@ -184,7 +184,7 @@ function Calculator() {
                 </div>
               </div>
 
-              <div className="flex flex-row gap-10 items-start justify-start max-w-[711px] w-full">
+              <div className="flex flex-col md:flex-row gap-10 items-start justify-start max-w-[711px] w-full">
                 <div className="flex flex-1 flex-col gap-1.5 items-start justify-start w-full">
                   <span
                     className="text-[15px] text-gray-900 w-auto font-inter font-normal"
@@ -218,7 +218,7 @@ function Calculator() {
                   >
                     Investment Type
                   </span>
-                  <div className="flex flex-row gap-2.5 items-start justify-start w-[335px]">
+                  <div className="flex flex-row gap-2.5 items-start justify-start w-full md:w-[335px] ">
                   <div className="flex flex-col gap-1 h-[84px] items-start justify-start w-full">
                     <div 
                     className={` cursor-pointer
@@ -283,7 +283,7 @@ function Calculator() {
               </div>
 
 
-              <div className="flex flex-row gap-10 items-end justify-start max-w-[711px] w-full">
+              <div className="flex flex-col md:flex-row gap-10 items-end justify-start md:max-w-[711px] w-full">
                 <div className="flex flex-1 flex-col gap-1.5 items-start justify-start w-full">
                   <span
                     className="text-gray-900 text-sm w-auto font-inter font-normal"
@@ -324,7 +324,7 @@ function Calculator() {
                     Tax Rate
                   </span>
                   <span
-                    className="text-gray-800 text-sm w-[268px] font-inter font-medium"
+                    className="text-gray-800 text-sm md:w-[268px] font-inter font-medium"
                   >
                     {income_tax_rate[incomeIndex]?.tax_amount || "-"}
                   </span>
@@ -332,7 +332,7 @@ function Calculator() {
               </div>
 
 
-              <div className="flex flex-row gap-10 items-start justify-start max-w-[711px] w-full">
+              <div className="flex flex-col md:flex-row gap-10 items-start justify-start md:max-w-[711px] w-full">
                 <div className="flex flex-1 flex-col gap-1.5 items-start justify-start w-full">
                   <span
                     className="text-[15px] text-gray-900 w-auto font-inter font-normal"
@@ -361,7 +361,7 @@ function Calculator() {
                 </div>
               </div>
 
-              <div className="flex flex-row gap-10 items-start justify-start max-w-[713px] w-full">
+              <div className="flex flex-col md:flex-row gap-10 items-start justify-start md:max-w-[713px] w-full">
                 <div className="bg-[#ebf8f4] flex flex-1 flex-col gap-2 h-[97px] md:h-auto items-center justify-center p-2 rounded-lg w-full">
                   <span
                     className="text-base text-center text-gray-900 w-auto font-inter font-medium"
