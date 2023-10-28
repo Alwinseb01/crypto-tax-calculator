@@ -4,7 +4,7 @@ import { faqData } from '../../data/faqdata';
 function Faq() {
       
       return (
-        <div className="flex flex-col items-start justify-start max-w-[881px] pb-5 w-full md:ml-44">
+        <div className="flex flex-col items-start justify-start max-w-[881px] pb-5 w-full md:ml-44 overflow-hidden">
         <div className="bg-white flex flex-col items-center justify-start p-[17px] rounded-[16px]  mb-4">
           <div className="flex flex-col gap-6 items-start justify-start mb-[23px] mt-1.5 w-auto md:w-full">
             <span className="text-3xl sm:text-[26px] md:text-[28px] text-[#0f1629] w-[416px] font-bold font-inter">
