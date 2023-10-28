@@ -189,7 +189,7 @@ function Calculator() {
                   <div className="flex flex-row gap-2.5 items-start justify-start w-full md:w-[335px] ">
                   <div className="flex flex-col gap-1 h-[84px] items-start justify-start w-full">
                     <div 
-                    className={` cursor-pointer
+                    className={` cursor-pointer hover:bg-[#0052fe0f] 
                         ${longTerm?`flex flex-col gap-1 h-[84px] md:h-auto items-start justify-start w-full`
                         : `bg-[#0052fe0f] border-2 border-[#0052fe] border-solid flex flex-row gap-2 h-14 items-center justify-start px-3 py-4 rounded-lg w-full`}`
                     }
@@ -220,7 +220,7 @@ function Calculator() {
                     </div>
                     <div className="flex flex-col gap-1 h-[84px] items-start justify-start w-full">
                       <div 
-                      className={` cursor-pointer
+                      className={` cursor-pointer hover:bg-[#0052fe0f] 
                         ${longTerm?`bg-[#0052fe0f] border-2 border-[#0052fe] border-solid flex flex-row gap-2 h-14 items-center justify-start px-3 py-4 rounded-lg w-full`
                         :`flex flex-col gap-1 h-[84px] md:h-auto items-start justify-start w-full`}`}
                         onClick={()=>setLongTerm(true)}
