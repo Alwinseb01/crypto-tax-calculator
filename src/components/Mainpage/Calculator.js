@@ -11,31 +11,31 @@ function Calculator() {
         {   
             "id": 0,
             "income": "$0 - $18,200",
-            "tax_rate": "0%",
+            "tax_rate": 0,
             "tax_amount": "$0"
         },
         {
             "id": 1,
             "income": "$18,201 - $45,000",
-            "tax_rate": "19%",
+            "tax_rate": 19,
             "tax_amount": "Nil + 19% of excess over $18,200"
         },
         {
             "id": 2,
             "income": "$45,001 - $120,000",
-            "tax_rate": "32.5%",
+            "tax_rate": 32.5,
             "tax_amount": "$5,902 + 32.5% of excess over $45,001"
         },
         {
             "id": 3,
             "income": "$120,001 - $180,000",
-            "tax_rate": "37%",
+            "tax_rate": 32.5,
             "tax_amount": "$29,467 + 37% of excess over $120,000"
         },
         {
             "id": 4,
             "income": "$180,001 and over",
-            "tax_rate": "45%",
+            "tax_rate": 45,
             "tax_amount": "$51,667 + 45% of excess over $180,000"
         }
     ]
@@ -44,7 +44,7 @@ function Calculator() {
     const [salePrice, setSalePrice] = React.useState();
     const [expenses, setExpenses] = React.useState();
     const [longTerm, setLongTerm] = React.useState(false);
-    const [incomeIndex, setIncomeIndex] = React.useState(2);
+    const [incomeIndex, setIncomeIndex] = React.useState();
 
     const [capitalGains, setCapitalGains] = React.useState();
     const [discountGains, setDiscountGains] = React.useState();
@@ -54,11 +54,13 @@ function Calculator() {
 
     useEffect(() => {
         setCapitalGains(salePrice - purchasePrice - expenses);  
+        console.log(capitalGains)
         setDiscountGains(longTerm?capitalGains*0.5:0);
         setNetGain(capitalGains - discountGains);
-        setTaxPayable(netGain*income_tax_rate[incomeIndex].tax_rate);
+        setTaxPayable(netGain*(income_tax_rate[incomeIndex]?.tax_rate/100));
+        console.log("TAX", taxPayable);
     }
-    , [purchasePrice, salePrice, expenses, longTerm, incomeIndex])
+    , [purchasePrice, salePrice, expenses, longTerm, incomeIndex, netGain])
 
 
   return (
@@ -140,7 +142,8 @@ function Calculator() {
                         input: { color: '#343940', lineHeight: 1.75, fontWeight: 550, fontSize: "1rem", }, 
                     }}         
                     onChange={(e)=>setPurchasePrice(e.target.value)}  
-                 className='bg-[#eff2f5] w-full'   
+                 className='bg-[#eff2f5] w-full'  
+                 placeholder='Enter Price' 
                 InputProps={{
                     startAdornment: (
                       <InputAdornment position="start" sx = {{color: 'black'}}>
@@ -149,7 +152,6 @@ function Calculator() {
                     ),
                   }}       
                   inputProps={{ className: "font-bold text-black text-lg w-full" }}
-                  defaultValue={"30000"}
                 />
         
                 </div>
@@ -169,6 +171,7 @@ function Calculator() {
                         input: { color: '#343940', lineHeight: 1.75, fontWeight: 550, fontSize: "1rem", }, 
                     }}               
                  className='bg-[#eff2f5] w-full'   
+                 placeholder='Enter Price'
                 InputProps={{
                     startAdornment: (
                       <InputAdornment position="start" sx = {{color: 'black'}}>
@@ -177,7 +180,6 @@ function Calculator() {
                     ),
                   }}       
                   inputProps={{ className: "font-bold text-black text-lg w-full" }}
-                  defaultValue={"20000"}
                 />
                 </div>
               </div>
@@ -205,8 +207,8 @@ function Calculator() {
                       </InputAdornment>
                     ),
                   }}       
+                  placeholder='Enter Expenses'
                   inputProps={{ className: "font-bold text-black text-lg w-full" }}
-                  defaultValue={"5000"}
                 />
                 </div>
 
@@ -293,8 +295,10 @@ function Calculator() {
                 "& .MuiInputBase-input": {  color: '#343940', lineHeight: 1.75, fontWeight: 550, fontSize: "1rem", }, 
 
             }}
-                defaultValue={income_tax_rate[2].income}
-                value={income_tax_rate[incomeIndex].income}
+                 placeholder='Select an option'
+                // defaultValue={income_tax_rate[2].income}
+                // value={income_tax_rate[incomeIndex].income}
+                // value={null}
                 renderValue={(selected) => selected}
                 onChange={(e)=>setIncomeIndex(income_tax_rate.find((item) => item.income === e.target.value).id)}
                 MenuProps={""}
@@ -322,7 +326,7 @@ function Calculator() {
                   <span
                     className="text-gray-800 text-sm w-[268px] font-inter font-medium"
                   >
-                    {income_tax_rate[incomeIndex].tax_amount}
+                    {income_tax_rate[incomeIndex]?.tax_amount || "-"}
                   </span>
                 </div>
               </div>
@@ -338,7 +342,7 @@ function Calculator() {
                 <div className="bg-[#eff2f5] w-full border-0 rounded-lg flex items-center p-3">
                     <div className="text-black px-2 font-bold text-lg" style={{ lineHeight: "1.75" }}>$</div>
                     <div className="text-black text-lg font-bold w-full" style={{ lineHeight: "1.75" }}>
-                        {capitalGains || "5000"}
+                        {capitalGains || "0000"}
                     </div>
                 </div>
                 </div>
@@ -351,7 +355,7 @@ function Calculator() {
                 <div className="bg-[#eff2f5] w-full border-0 rounded-lg flex items-center p-3">
                     <div className="text-black px-2 font-bold text-lg" style={{ lineHeight: "1.75" }}>$</div>
                     <div className="text-black text-lg font-bold w-full" style={{ lineHeight: "1.75" }}>
-                        {discountGains || "2500"}
+                        {discountGains || "0000"}
                     </div>
                 </div>
                 </div>
@@ -367,7 +371,7 @@ function Calculator() {
                   <span
                     className="text-2xl md:text-[22px] text-center text-[#0fba83] sm:text-xl w-auto font-bold font-inter"
                   >
-                    ${netGain|| "2500"}
+                    ${netGain|| "0000"}
                   </span>
                 </div>
                 <div className="bg-blue-50 flex flex-1 flex-col gap-2 h-[97px] md:h-auto items-center justify-center p-2 rounded-lg w-full">
@@ -379,7 +383,7 @@ function Calculator() {
                   <span
                     className="text-2xl md:text-[22px] text-blue-800 text-center sm:text-xl w-auto font-bold font-inter"
                   >
-                    ${taxPayable|| "812.5"}
+                    ${taxPayable|| "0000"}
                   </span>
                 </div>
               </div>
